@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/styles.css"/>
 </head>
+<?php
+session_start();
+?>
 <body>
 <header>
     <!-- MENU ENTETE -->
@@ -34,6 +37,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+
+                    <?php if(empty($_SESSION['loginname'])): ?>
+                        <li><a href="login.php">Connexion</a></li>
+                    <?php elseif (isset($_SESSION['loginname'])): ?>
+                        <li><a href="disconnect.php">Disconnect</a></li>
+                    <?php endif ?>
+
                     <li><a href="#">Chocolates chips</a></li>
                     <li><a href="#">Nuts</a></li>
                     <li><a href="#">Gluten full</a></li>
@@ -48,6 +58,11 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+        <strong>Hello <?php if (isset($_SESSION['loginname'])): ?>
+            <?= $_SESSION['loginname'] . ' !' ?>
+        <?php else: ?>
+            <?= "Wilder !"?>
+        <?php endif; ?>
+
     </div>
 </header>
