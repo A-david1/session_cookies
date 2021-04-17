@@ -5,9 +5,11 @@
 if(!isset($_SESSION['loginname'])){
     header('Location: login.php');
 }
-if($_SERVER['REQUEST_METHOD']= $_GET) {
-    $_SESSION['products'][] = $_GET['id_cookie'];
+
+if ($_SERVER['REQUEST_METHOD'] = $_GET & isset($_SESSION['loginname'])) {
+        $_SESSION['products'][] = $_GET['id_cookie'];
 }
+
 ?>
 
 <section class="cookies container-fluid">
